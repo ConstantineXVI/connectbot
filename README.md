@@ -1,3 +1,9 @@
+Personal fork of connectbot: original may be found at http://code.google.com/p/connectbot/
+
+Hacked (roughly) to make the Ctrl key work, no other modifications as yet.
+
+Original README follows -ap 
+
 Compiling
 ---------
 

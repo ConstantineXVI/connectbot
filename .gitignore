@@ -3,3 +3,7 @@ gen
 launchpad-*.tar.gz
 local.properties
 *~
+*.iml
+*.ipr
+*.iws
+.idea/

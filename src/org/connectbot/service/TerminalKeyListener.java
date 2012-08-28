@@ -287,6 +287,9 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 					case KeyEvent.KEYCODE_ALT_LEFT:
 						metaPress(META_ALT_ON);
 						return true;
+                    case KeyEvent.KEYCODE_CTRL_LEFT:
+                        metaPress(META_CTRL_ON);
+                        return true;
 					}
 				} else if (PreferenceConstants.KEYMODE_LEFT.equals(keymode)) {
 					switch (keyCode) {
@@ -302,6 +305,9 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 					case KeyEvent.KEYCODE_ALT_RIGHT:
 						metaPress(META_ALT_ON);
 						return true;
+                    case KeyEvent.KEYCODE_CTRL_RIGHT:
+                        metaPress(META_CTRL_ON);
+                        return true;
 					}
 				} else {
 					switch (keyCode) {
