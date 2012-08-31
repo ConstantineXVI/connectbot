@@ -282,6 +282,7 @@ public class ConsoleActivity extends Activity {
 		if (prefs.getBoolean(PreferenceConstants.FULLSCREEN, false)) {
 			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getTheme().applyStyle(R.style.NoTitle,false);
 		}
 
         realKeys = prefs.getBoolean(PreferenceConstants.REAL_KEYS,false);
