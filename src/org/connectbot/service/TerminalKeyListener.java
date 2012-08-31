@@ -71,6 +71,7 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 
 	private String keymode = null;
 	private boolean hardKeyboard = false;
+    private boolean realKeys = false;
 
 	private int metaState = 0;
 
@@ -102,7 +103,7 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 
 		hardKeyboard = (manager.res.getConfiguration().keyboard
 				== Configuration.KEYBOARD_QWERTY);
-
+        realKeys = prefs.getBoolean("realkeys",false);
 		updateKeymode();
 	}
 
@@ -247,7 +248,7 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 			}
 
 			// send ctrl and meta-keys as appropriate
-			if (!hardKeyboard || hardKeyboardHidden) {
+			if (!hardKeyboard || hardKeyboardHidden || realKeys) {
 				int k = event.getUnicodeChar(0);
 				int k0 = k;
 				boolean sendCtrl = false;
@@ -271,7 +272,7 @@ public class TerminalKeyListener implements OnKeyListener, OnSharedPreferenceCha
 				}
 			}
 			// try handling keymode shortcuts
-			if (hardKeyboard && !hardKeyboardHidden &&
+			if (hardKeyboard && !hardKeyboardHidden && !realKeys &&
 					event.getRepeatCount() == 0) {
 				if (PreferenceConstants.KEYMODE_RIGHT.equals(keymode)) {
 					switch (keyCode) {

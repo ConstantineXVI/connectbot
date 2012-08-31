@@ -482,4 +482,6 @@
 	<!-- Describes the icon of the "show keyboard" button in the terminal view for accessibility
 	     purposes. -->
 	<string name="image_description_show_keyboard">Show keyboard.</string>
+    <string name="pref_realkeys_title">Use raw keys</string>
+    <string name="pref_realkeys_summary">Pass all keystrokes through to host</string>
 </resources>

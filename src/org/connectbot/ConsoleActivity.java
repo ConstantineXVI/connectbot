@@ -99,7 +99,7 @@ public class ConsoleActivity extends Activity {
 	// determines whether or not menuitem accelerators are bound
 	// otherwise they collide with an external keyboard's CTRL-char
 	private boolean hardKeyboard = false;
-
+    private boolean realKeys = false;
 	protected Uri requested;
 
 	protected ClipboardManager clipboard;
@@ -257,6 +257,7 @@ public class ConsoleActivity extends Activity {
 		booleanPromptGroup.setVisibility(View.GONE);
 	}
 
+    // TODO (when lazy) get network off the UI thread.
 	// more like configureLaxMode -- enable network IO on UI thread
 	private void configureStrictMode() {
 		try {
@@ -282,6 +283,8 @@ public class ConsoleActivity extends Activity {
 			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 					WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		}
+
+        realKeys = prefs.getBoolean(PreferenceConstants.REAL_KEYS,false);
 
 		// TODO find proper way to disable volume key beep if it exists.
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -631,7 +634,7 @@ public class ConsoleActivity extends Activity {
 		menu.setQwertyMode(true);
 
 		disconnect = menu.add(R.string.list_host_disconnect);
-		if (hardKeyboard)
+		if (hardKeyboard && !realKeys)
 			disconnect.setAlphabeticShortcut('w');
 		if (!sessionOpen && disconnected)
 			disconnect.setTitle(R.string.console_menu_close);
@@ -649,7 +652,7 @@ public class ConsoleActivity extends Activity {
 		});
 
 		copy = menu.add(R.string.console_menu_copy);
-		if (hardKeyboard)
+		if (hardKeyboard && !realKeys)
 			copy.setAlphabeticShortcut('c');
 		copy.setIcon(android.R.drawable.ic_menu_set_as);
 		copy.setEnabled(activeTerminal);
@@ -674,7 +677,7 @@ public class ConsoleActivity extends Activity {
 		});
 
 		paste = menu.add(R.string.console_menu_paste);
-		if (hardKeyboard)
+		if (hardKeyboard && !realKeys)
 			paste.setAlphabeticShortcut('v');
 		paste.setIcon(android.R.drawable.ic_menu_edit);
 		paste.setEnabled(clipboard.hasText() && sessionOpen);
@@ -693,7 +696,7 @@ public class ConsoleActivity extends Activity {
 		});
 
 		portForward = menu.add(R.string.console_menu_portforwards);
-		if (hardKeyboard)
+		if (hardKeyboard && !realKeys)
 			portForward.setAlphabeticShortcut('f');
 		portForward.setIcon(android.R.drawable.ic_menu_manage);
 		portForward.setEnabled(sessionOpen && canForwardPorts);
@@ -710,7 +713,7 @@ public class ConsoleActivity extends Activity {
 		});
 
 		urlscan = menu.add(R.string.console_menu_urlscan);
-		if (hardKeyboard)
+		if (hardKeyboard && !realKeys)
 			urlscan.setAlphabeticShortcut('u');
 		urlscan.setIcon(android.R.drawable.ic_menu_search);
 		urlscan.setEnabled(activeTerminal);
@@ -736,7 +739,7 @@ public class ConsoleActivity extends Activity {
 		});
 
 		resize = menu.add(R.string.console_menu_resize);
-		if (hardKeyboard)
+		if (hardKeyboard && !realKeys)
 			resize.setAlphabeticShortcut('s');
 		resize.setIcon(android.R.drawable.ic_menu_crop);
 		resize.setEnabled(sessionOpen);

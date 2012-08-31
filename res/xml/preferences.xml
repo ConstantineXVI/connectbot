@@ -93,6 +93,13 @@
 			android:defaultValue="Use right-side keys"
 			/>
 
+        <CheckBoxPreference
+            android:key="realkeys"
+            android:title="@string/pref_realkeys_title"
+            android:summary="@string/pref_realkeys_summary"
+            android:defaultValue="false"
+            />
+
 		<ListPreference
 			android:key="camera"
 			android:title="@string/pref_camera_title"
